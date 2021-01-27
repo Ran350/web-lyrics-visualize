@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+
+{% block body %}
+
+<form action="/" method="POST">
+
+    <label for="title">歌手名</label>
+    <input type="text" name="artist">
+    
+    <label for="title">曲名</label>
+    <input type="text" name="title">
+    
+    <input type="submit" value="検索">
+
+</form>
+{% block status %}{% endblock %}
+
+{% endblock %}
