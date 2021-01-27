@@ -1,0 +1,4 @@
+/__pycache__/
+
+/static/images/*
+!/static/images/丸の内サディスティック.png
