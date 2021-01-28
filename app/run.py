@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, url_for, redirect
 from lyrics_visualize import lv
+import os
 
 
 app = Flask(__name__)
@@ -15,7 +16,9 @@ def route_page():
         title = request.form.get('title')
 
         try:
-            lv.create(artist=artist, song=title)
+            if not os.path.exists('static/images/'+title+'.png'):
+                lv.create(artist=artist, song=title)
+
             args = '?artist='+artist + '&title='+title
             return redirect('/create'+args)
 
