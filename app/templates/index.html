@@ -3,17 +3,32 @@
 
 {% block body %}
 
-<form action="/" method="POST">
+<div class="col-md-10 col-md-offset-1"> 
+    <form class="form-horizontal" action="/" method="POST">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="artist">歌手名:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="artist" placeholder="Enter artist name" name="artist">
+            </div>
+        </div>
 
-    <label for="title">歌手名</label>
-    <input type="text" name="artist">
-    
-    <label for="title">曲名</label>
-    <input type="text" name="title">
-    
-    <input type="submit" value="検索">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="title">曲名:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="title" placeholder="Enter song title" name="title">
+            </div>
+        </div>
+        
+        {% block status %}{% endblock %}
+        
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">検索</button>
+            </div>
+        </div>
+    </form>
+</div>
 
-</form>
-{% block status %}{% endblock %}
+
 
 {% endblock %}

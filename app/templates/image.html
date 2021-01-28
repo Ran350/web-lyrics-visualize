@@ -2,14 +2,19 @@
 
 
 {% block body %}
-<h2>
-    {{ artist }} の {{ title }}
-</h2>
 
-<form action="/" method="GET">
-    <input type="submit" value="検索画面へ戻る">
-</form>
+<div style="display: flex;  justify-content: center;  align-items: center;">
+    <p>歌: {{ artist }} / 曲: {{ title }}</p>
+</div>
 
-<img src="{{ url }}" alt="User Image">
+<div style="display: flex;  justify-content: center;  align-items: center;">
+    <img src="{{ url }}" class="img-responsive img-rounded" alt="lyrics visualize image" width="600" height="400">
+</div>
+
+<ul class="pager">
+    <li class="next"><a href="/">検索画面へ戻る</a></li>
+</ul>
+
+
 
 {% endblock %}
