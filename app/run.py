@@ -1,6 +1,5 @@
 from flask import Flask, request, render_template, url_for, redirect
-from models import create_args
-# from lyrics_visualize import lv
+from lyrics_visualize import lv
 
 
 app = Flask(__name__)
@@ -16,8 +15,7 @@ def route_page():
         title = request.form.get('title')
 
         try:
-            # lv.create(artist=artist, title=title)
-            # args = create_args(request)
+            lv.create(artist=artist, song=title)
             args = '?artist='+artist + '&title='+title
             return redirect('/create'+args)
 
@@ -27,13 +25,17 @@ def route_page():
 
 @app.route('/create')
 def create():
-    title = request.args.get('title')
-    artist = request.args.get('artist')
+    if request.method == 'GET':
+        title = request.args.get('title')
+        artist = request.args.get('artist')
 
-    folder = "images/" + title+".png"
-    url = url_for('static', filename=folder)
+        folder = "images/" + title+".png"
+        url = url_for('static', filename=folder)
 
-    return render_template("image.html", artist=artist, title=title, url=url)
+        return render_template("image.html", artist=artist, title=title, url=url)
+
+    if request.method == 'POST':
+        return redirect('/')
 
 
 if __name__ == '__main__':
