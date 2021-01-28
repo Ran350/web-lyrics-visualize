@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, url_for, redirect
+from flask import Flask, request, render_template, url_for, redirect, abort
 from lyrics_visualize import lv
 import os
 
@@ -28,7 +28,7 @@ def route_page():
 
 @app.route('/create')
 def create():
-    if request.method == 'GET':
+    try:
         title = request.args.get('title')
         artist = request.args.get('artist')
 
@@ -37,8 +37,8 @@ def create():
 
         return render_template("image.html", artist=artist, title=title, url=url)
 
-    if request.method == 'POST':
-        return redirect('/')
+    except:
+        return abort(404)
 
 
 if __name__ == '__main__':
